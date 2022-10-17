@@ -1,0 +1,122 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+:root{
+    --tile-size: 100px;
+    --mark-size: calc(var(--tile-size)* .9);
+    --panel-size: calc(var(--tile-size)*3)
+}
+body {
+    margin: 0;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.board {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(3, auto);
+}
+.panels {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(3, auto);
+    border: 2px solid black;
+}
+.tiles {
+    display: flex;
+    position: relative;
+    border: 1px solid lightgray;
+    height: var(--tile-size);
+    width: var(--tile-size);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.tiles.x::before,
+.tiles.x::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: calc(var(--mark-size)* .12);
+    height: var(--mark-size);
+}
+.tiles.x::before{
+    transform: rotate(45deg);
+}
+.tiles.x::after{
+    transform: rotate(-45deg);
+}
+.tiles.o::before,
+.tiles.o::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+}
+.tiles.o::before{
+    width: calc(var(--mark-size)*.9);
+    height: calc(var(--mark-size)*.9);
+}
+.tiles.o::after{
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size)* .7);
+    background-color: white;
+}
+.tiles.x, .tiles.o{
+    cursor: not-allowed;
+}
+.toplayer{
+    display: grid;
+    position: absolute;
+    width: var(--panel-size);
+    height: var(--panel-size);
+    background-color:white;
+    border: 1px solid white;
+    z-index: 1;
+    cursor: pointer;
+}
+.toplayer.x::before,
+.toplayer.x::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: calc(var(--panel-size)* .12);
+    height: var(--panel-size);
+    justify-self: center;
+    align-self: center;
+    z-index: 1;
+}
+.toplayer.x::before{
+    transform: rotate(45deg);
+}
+.toplayer.x::after{
+    transform: rotate(-45deg);
+}
+.toplayer.o::before,
+.toplayer.o::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+    z-index: 1;
+}
+.toplayer.o::before{
+    width: calc(var(--panel-size)*.9);
+    height: calc(var(--panel-size)*.9);
+}
+.toplayer.o::after{
+    width: calc(var(--panel-size) * .7);
+    height: calc(var(--panel-size)* .7);
+    background-color: white;
+}
+.toplayer.hide{
+    visibility: hidden;
+}
