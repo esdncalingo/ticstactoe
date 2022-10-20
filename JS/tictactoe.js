@@ -21,6 +21,7 @@ window.addEventListener('load', () => {
     ];
     const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why you Bully Me', 'Wow!'];
     let playerTurn, currentPanel, activePanel=false;
+    let startBGM, gameBGM;
 
     toplayerElement.forEach(toplayer => {
         toplayer.addEventListener('click', (e) => {
@@ -69,6 +70,8 @@ window.addEventListener('load', () => {
     startButton.addEventListener('click', () => {
         const startmenu = document.querySelector('#startmenu');
         startmenu.style.display = 'none'
+        startBGM.pause()
+        gameBGM.play()
     })
 
     function placeMark(tiles, currentPlayer){
@@ -138,14 +141,14 @@ window.addEventListener('load', () => {
         } else {
             console.log(`o win with score of ${o_score}`)
         }
-        
     }
 
     function randomSounds(){
         var randomMusic = playList[Math.floor(Math.random()*playList.length)];
         var playAudio = new Audio();
-        playAudio.src = `./audio/${randomMusic}.mp3`;
+        playAudio.src = `./audio/meme/${randomMusic}.mp3`;
         playAudio.play()
+        playAudio.volume = .1;
     }
 
     prevButton.addEventListener('click', () => {
@@ -173,4 +176,13 @@ window.addEventListener('load', () => {
             }
         }
     })
+
+    startBGM = new Audio();
+    startBGM.src = './audio/bgm/start.mp3';    
+    startBGM.play()
+    startBGM.volume = .06;
+
+    gameBGM = new Audio();
+    gameBGM.src = './audio/bgm/game.mp3';
+    gameBGM.volume = .08;
 })
