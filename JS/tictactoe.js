@@ -19,6 +19,7 @@ window.addEventListener('load', () => {
         [1,5,9],
         [7,5,3]
     ];
+    const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why you Bully Me', 'Wow!'];
     let playerTurn, currentPanel, activePanel=false;
 
     toplayerElement.forEach(toplayer => {
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
                 winPanel.replaceWith(winPanel.cloneNode(true))
                 activePanel = false;
                 matchHistory.push({id: winPanel.dataset.id, mark: currentPlayer});
-
+                randomSounds()
                 playerScore()
             } else if (isDraw()){
                 winPanel.classList.add('draw')
@@ -138,6 +139,13 @@ window.addEventListener('load', () => {
             console.log(`o win with score of ${o_score}`)
         }
         
+    }
+
+    function randomSounds(){
+        var randomMusic = playList[Math.floor(Math.random()*playList.length)];
+        var playAudio = new Audio();
+        playAudio.src = `./audio/${randomMusic}.mp3`;
+        playAudio.play()
     }
 
     prevButton.addEventListener('click', () => {
