@@ -5,6 +5,8 @@ window.addEventListener('load', () => {
     const toplayerElement = document.querySelectorAll('[data-toplayer]');
     const prevButton = document.querySelector('#prevbtn');
     const nextButton = document.querySelector('#nxtbtn');
+    const restartButton = document.querySelector('#restartbtn');
+    const startButton = document.querySelector('#startbtn');
     const matchHistory = [], prevHistory = [];
     const win_panel_pattern = [
         [1,2,3],
@@ -35,6 +37,7 @@ window.addEventListener('load', () => {
             let winPanel = document.querySelector(`[data-toplayer='${currentPanel}']`);
             placeMark(tiles, currentPlayer)
             matchHistory.push({id: tiles.dataset.id, mark: currentPlayer});
+            
             if(checkWin(currentPlayer)){  
                 winPanel.classList.remove('hide')
                 winPanel.classList.add(currentPlayer)
@@ -52,6 +55,13 @@ window.addEventListener('load', () => {
 
             swapPlayer()
         }, {once: true});
+    })
+    restartButton.addEventListener('click', () => {
+        location.reload();
+    })
+    startButton.addEventListener('click', () => {
+        const startmenu = document.querySelector('#startmenu');
+        startmenu.style.display = 'none'
     })
 
     function placeMark(tiles, currentPlayer){
