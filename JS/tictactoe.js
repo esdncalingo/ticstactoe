@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
     const x_class = 'x';
     const o_class = 'o';
+    let x_score = 0, o_score = 0, draw_count = 0;
     const tilesElement = document.querySelectorAll('[data-tileset]');
     const toplayerElement = document.querySelectorAll('[data-toplayer]');
     const prevButton = document.querySelector('#prevbtn');
@@ -44,20 +45,27 @@ window.addEventListener('load', () => {
                 winPanel.replaceWith(winPanel.cloneNode(true))
                 activePanel = false;
                 matchHistory.push({id: winPanel.dataset.id, mark: currentPlayer});
+
+                playerScore()
             } else if (isDraw()){
                 activePanel = false;
+                draw_count++;
                 console.log('draw')
             }
 
             if(overAllWin(currentPlayer)){
                 console.log(currentPlayer + ' win')
-            }
+            } else if(overAllWinbyScore(currentPlayer)){
 
+            }
+            
             swapPlayer()
         }, {once: true});
     })
     restartButton.addEventListener('click', () => {
         location.reload();
+        const startmenu = document.querySelector('#startmenu');
+        startmenu.style.display = 'none'
     })
     startButton.addEventListener('click', () => {
         const startmenu = document.querySelector('#startmenu');
@@ -69,7 +77,16 @@ window.addEventListener('load', () => {
     }
 
     function swapPlayer() {
+        let X_player = document.querySelector('#player1score');
+        let O_player = document.querySelector('#player2score');
         playerTurn = !playerTurn;
+
+        X_player.textContent = x_score;
+        O_player.textContent = o_score;
+    }
+
+    function playerScore() {
+        playerTurn ? o_score++ : x_score++;
     }
 
     function checkWin(currentPlayer){
@@ -106,6 +123,14 @@ window.addEventListener('load', () => {
                 return chktest.classList.contains(currentPlayer);
             })
         })
+    }
+    function overAllWinbyScore(currentPlayer){
+        if (currentPlayer == x_class && x_score >= 5 - draw_count) {
+            console.log(`x win with score of ${x_score}`)
+        }
+        if (currentPlayer == o_class && o_score >= 5 - draw_count) {
+            console.log(`o win with score of ${o_score}`)
+        }
     }
 
     prevButton.addEventListener('click', () => {

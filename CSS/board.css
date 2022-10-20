@@ -6,6 +6,8 @@
     --mark-size: calc(var(--tile-size)* .9);
     --panel-size: calc(var(--tile-size)*3);
     --playerbox-size: calc(var(--tile-size)*1.5);
+    --borderbox-shadow-color: 0px 0px 8px 8px rgb(199, 180, 180), 
+    0px 0px 0px 10px hsl(0deg 0% 0% / 90%);
 }
 body {
     margin: 0;
@@ -24,13 +26,28 @@ main {
     align-items: center;
     position: absolute;
     z-index: 2;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: black;
 }
 #startbtn{
     height: 60px;
     width: 150px;
+    border: 0;
+    background-color: coral;
+    border-radius: 30px;
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
+    0px 0px 0px 10px rgba(214, 8, 8, 0.9);;
+    text-shadow: -2px 1px rgba(255, 145, 145, 0.9);
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+#startbtn:hover{
+    box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
+    0px 0px 0px 12px rgba(245, 83, 83, 0.5);;
+    transform: scale(1.05);
 }
 #gamescreen {
     display: flex;
@@ -39,12 +56,17 @@ main {
     display: grid;
     position: relative;
     grid-template-columns: repeat(3, auto);
+    box-shadow: var(--borderbox-shadow-color);
+    border-radius: 5px;
+    margin: 20px;
+    
 }
 .panels {
     display: grid;
     position: relative;
     grid-template-columns: repeat(3, auto);
-    border: 2px solid black;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 .tiles {
     display: flex;
@@ -146,20 +168,25 @@ main {
     gap: 30px;
 }
 .scoreboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: var(--playerbox-size);
     height: var(--playerbox-size);
     border: 0;
     border-radius: 5px;
-    box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
-    0px 0px 0px 10px hsl(0deg 0% 0% / 90%);
+    box-shadow: var(--borderbox-shadow-color);
     background-color: white;
+}
+.playerscore{
+    font-size: 80px;
 }
 .playerbox{
     width: var(--playerbox-size);
     height: calc(var(--playerbox-size)*2);
     border: 0;
     border-radius: 5px;
-    box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
-    0px 0px 0px 10px hsl(0deg 0% 0% / 90%);
+    box-shadow: var(--borderbox-shadow-color);
     background-color: white;
 }

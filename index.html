@@ -10,20 +10,26 @@
 </head>
 <body>
     <main>
+        <section id="startmenu">
+            <button id="startbtn">Start</button>
+        </section>
+
         <section id="gamescreen">
             <div class="playerboard" id="player1">
-                <div class="scoreboard" id="player1score"></div>
+                <div class="scoreboard" >
+                    <span>X-Player Score:</span>
+                    <span class="playerscore" id="player1score">0</span>
+                </div>
                 <div class="playerbox"></div>
             </div>
             <div class="board"></div>
             <div class="playerboard" id="player2">
-                <div class="scoreboard" id="player2score"></div>
+                <div class="scoreboard" >
+                    <span>O-Player Score:</span>
+                    <span class="playerscore" id="player2score">0</span>
+                </div>
                 <div class="playerbox"></div>
             </div>
-        </section>
-
-        <section id="startmenu">
-            <button id="startbtn">Start</button>
         </section>
         
         <section id="endgamemenu">
