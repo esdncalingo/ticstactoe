@@ -11,6 +11,7 @@
 }
 body {
     margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 main {
     display: flex;
@@ -37,7 +38,6 @@ main {
     background-color: coral;
     border-radius: 30px;
     font-size: 25px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
     0px 0px 0px 10px rgba(214, 8, 8, 0.9);;
     text-shadow: -2px 1px rgba(255, 145, 145, 0.9);
