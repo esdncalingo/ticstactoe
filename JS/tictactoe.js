@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
     ];
     const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why You Bully Me', 'Wow!'];
     let playerTurn, currentPanel, activePanel=false;
-    let startBGM, gameBGM;
+    let startBGM, gameBGM, noRepeat;
 
     loadAllPanelClickEvent()
     loadAllTilesClickEvent()
@@ -193,9 +193,15 @@ window.addEventListener('load', () => {
     function randomSounds(){
         var randomMusic = playList[Math.floor(Math.random()*playList.length)];
         var playAudio = new Audio();
-        playAudio.src = `./audio/meme/${randomMusic}.mp3`;
-        playAudio.play()
-        playAudio.volume = .25;
+        console.log(noRepeat)
+        if (noRepeat !== randomMusic){
+            playAudio.src = `./audio/meme/${randomMusic}.mp3`;
+            playAudio.play()
+            playAudio.volume = .25;
+            noRepeat = randomMusic;
+        } else {
+            randomSounds()
+        }
     }
 
     function winningMessage(message){
