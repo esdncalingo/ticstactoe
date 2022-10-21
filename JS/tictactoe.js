@@ -195,7 +195,7 @@ window.addEventListener('load', () => {
         var playAudio = new Audio();
         playAudio.src = `./audio/meme/${randomMusic}.mp3`;
         playAudio.play()
-        playAudio.volume = .1;
+        playAudio.volume = .25;
     }
 
     function winningMessage(message){
@@ -234,10 +234,10 @@ window.addEventListener('load', () => {
     startBGM.src = './audio/bgm/start.mp3';    
     startBGM.play()
     startBGM.loop = true;
-    startBGM.volume = .02;
+    startBGM.volume = .04;
 
     gameBGM = new Audio();
     gameBGM.src = './audio/bgm/game.mp3';
     gameBGM.loop = true;
-    gameBGM.volume = .03;
+    gameBGM.volume = .05;
 })
