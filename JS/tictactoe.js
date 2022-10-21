@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
     const rematchButton = document.querySelector('#rematchbtn');
     const reviewRematchButton = document.querySelector('#rematch2btn');
     const quitButton = document.querySelector('#quitbtn');
-    let messageBox = document.querySelector('#winmessage');
+    let messageBox = document.querySelector('.winmessage');
     let reviewDisplay = document.querySelector('.endgamebtns');
     let matchHistory = [], prevHistory = [];
     const win_panel_pattern = [
@@ -200,7 +200,7 @@ window.addEventListener('load', () => {
 
     function winningMessage(message){
         let msg = document.querySelector('#messagestatus');
-        messageBox.style.display = 'block';
+        messageBox.style.display = 'flex';
         msg.textContent = message;
     }
 
