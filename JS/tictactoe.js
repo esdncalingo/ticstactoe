@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
         [1,5,9],
         [7,5,3]
     ];
-    const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why you Bully Me', 'Wow!'];
+    const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why You Bully Me', 'Wow!'];
     let playerTurn, currentPanel, activePanel=false;
     let startBGM, gameBGM;
 
