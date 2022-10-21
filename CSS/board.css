@@ -218,6 +218,10 @@ main {
     font-size: 80px;
 }
 .playerbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: var(--playerbox-size);
     height: calc(var(--playerbox-size)*2);
     border: 0;
@@ -229,11 +233,88 @@ main {
     background-image: url(../gifs/narberal.gif);
     background-position: center;
     background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
 }
 #lupusregina{
     background-image: url(../gifs/lupusregina.gif);
     background-position: center;
     background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+#player1speech{
+    display: flex;
+    position: relative;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 80%;
+    border: 8px solid #666;
+    background-color: lightyellow;
+}
+#player1speech p, #player2speech p{
+    text-align: center;
+}
+#player1speech:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 30px;
+    right: auto;
+    top: auto;
+	bottom: -40px;
+	border: 20px solid;
+	border-color: #666 transparent transparent #666;
+}
+#player1speech:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 38px;
+    right: auto;
+    top: auto;
+	bottom: -20px;
+	border: 12px solid;
+	border-color: lightyellow transparent transparent lightyellow;
+}
+#player2speech{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    height: 50%;
+    width: 80%;
+    border: 8px solid #666;
+    background-color: lightyellow;
+}
+#player2speech:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 30px;
+    right: auto;
+    top: auto;
+	bottom: -40px;
+	border: 20px solid;
+	border-color: #666 #666 transparent transparent ;
+}
+#player2speech:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 38px;
+    right: auto;
+    top: auto;
+	bottom: -20px;
+	border: 12px solid;
+	border-color: lightyellow lightyellow transparent transparent ;
 }
 .winmessage {
     display: none;

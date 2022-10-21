@@ -24,8 +24,9 @@ window.addEventListener('load', () => {
         [7,5,3]
     ];
     const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why You Bully Me', 'Wow!'];
+    const speechList = ['Eat Dust!', 'I can win this time', 'I got this', 'The World is mine', 'You gonna lose!', 'I got my eyes on you', 'Mine! Mine! Mine!', 'for Ainz Ooal Gown!!', 'I will destroy you my Sister', 'You cant defeet me'];
     let playerTurn, currentPanel, activePanel=false;
-    let startBGM, gameBGM, noRepeat;
+    let startBGM, gameBGM, noRepeat, noRepeatSpeech;
 
     loadAllPanelClickEvent()
     loadAllTilesClickEvent()
@@ -82,6 +83,7 @@ window.addEventListener('load', () => {
                     activePanel = false;
                     matchHistory.push({id: winPanel.dataset.id, mark: currentPlayer});
                     playerTurn ? o_score++ : x_score++;
+                    randomSpeech(currentPlayer)
                     randomSounds()
                     playerScore()
                 } else if (isDraw()){
@@ -201,6 +203,32 @@ window.addEventListener('load', () => {
             noRepeat = randomMusic;
         } else {
             randomSounds()
+        }
+    }
+
+    function randomSpeech(currentPlayer){
+        var speech = speechList[Math.floor(Math.random()*speechList.length)];
+        player1 = document.querySelector('#player1speech');
+        player2 = document.querySelector('#player2speech');
+
+        if (noRepeatSpeech !== speech){
+            if (currentPlayer == x_class) {
+                player1.style.visibility = 'visible';
+                player1.innerHTML = `<p>${speech}</p>`;
+                setTimeout(() => {
+                    player1.style.visibility = 'hidden';
+                }, 3000)
+                noRepeatSpeech = speech
+            } else if (currentPlayer == o_class){
+                player2.style.visibility = 'visible';
+                player2.innerHTML = `<p>${speech}</p>`;
+                setTimeout(() => {
+                    player2.style.visibility = 'hidden';
+                }, 3000)
+                noRepeatSpeech = speech
+            }
+        } else {
+            randomSpeech()
         }
     }
 
