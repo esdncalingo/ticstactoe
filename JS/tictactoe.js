@@ -2,13 +2,14 @@ window.addEventListener('load', () => {
     const x_class = 'x';
     const o_class = 'o';
     let x_score = 0, o_score = 0;
-    const tilesElement = document.querySelectorAll('[data-tileset]');
-    const toplayerElement = document.querySelectorAll('[data-toplayer]');
     const prevButton = document.querySelector('#prevbtn');
     const nextButton = document.querySelector('#nxtbtn');
     const restartButton = document.querySelector('#restartbtn');
     const startButton = document.querySelector('#startbtn');
-    const matchHistory = [], prevHistory = [];
+    const rematchButton = document.querySelector('#rematchbtn');
+    const quitButton = document.querySelector('#quitbtn');
+    let messageBox = document.querySelector('#winmessage');
+    let matchHistory = [], prevHistory = [];
     const win_panel_pattern = [
         [1,2,3],
         [4,5,6],
@@ -23,45 +24,9 @@ window.addEventListener('load', () => {
     let playerTurn, currentPanel, activePanel=false;
     let startBGM, gameBGM;
 
-    toplayerElement.forEach(toplayer => {
-        toplayer.addEventListener('click', (e) => {
-            if (!activePanel){
-                const layer = e.target;
-                layer.classList.add('hide');
-                currentPanel = layer.dataset.toplayer;
-                activePanel = true;
-            } 
-        })
-    })
-    tilesElement.forEach(tiles => {
-        tiles.addEventListener('click', (e) => {
-            const tiles = e.target;
-            const currentPlayer = playerTurn ? o_class : x_class;
-            let winPanel = document.querySelector(`[data-toplayer='${currentPanel}']`);
-            placeMark(tiles, currentPlayer)
-            matchHistory.push({id: tiles.dataset.id, mark: currentPlayer});
-            
-            if(checkWin(currentPlayer)){  
-                winPanel.classList.remove('hide')
-                winPanel.classList.add(currentPlayer)
-                winPanel.replaceWith(winPanel.cloneNode(true))
-                activePanel = false;
-                matchHistory.push({id: winPanel.dataset.id, mark: currentPlayer});
-                randomSounds()
-                playerScore()
-            } else if (isDraw()){
-                winPanel.classList.add('draw')
-                activePanel = false;
-            }
-
-            if(overAllWin(currentPlayer)){
-                console.log(currentPlayer + ' win')
-            } else if(overallDraw()){
-                overAllWinbyScore()
-            }
-            swapPlayer()
-        }, {once: true});
-    })
+    loadAllPanelClickEvent()
+    loadAllTilesClickEvent()
+    
     restartButton.addEventListener('click', () => {
         location.reload();
         const startmenu = document.querySelector('#startmenu');
@@ -73,22 +38,71 @@ window.addEventListener('load', () => {
         startBGM.pause()
         gameBGM.play()
     })
+    quitButton.addEventListener('click', () => {
+        location.reload();
+    })
+    rematchButton.addEventListener('click', rematch)
 
-    function placeMark(tiles, currentPlayer){
-        tiles.classList.add(currentPlayer);
+    function loadAllPanelClickEvent(){
+        const toplayerElement = document.querySelectorAll('[data-toplayer]');
+        toplayerElement.forEach(toplayer => {
+            toplayer.addEventListener('click', (e) => {
+                if (!activePanel){
+                    const layer = e.target;
+                    layer.classList.add('hide');
+                    currentPanel = layer.dataset.toplayer;
+                    activePanel = true;
+                } 
+            })
+        })
     }
+    function loadAllTilesClickEvent(){
+        const tilesElement = document.querySelectorAll('[data-tileset]');
+        tilesElement.forEach(tiles => {
+            tiles.addEventListener('click', (e) => {
+                const tiles = e.target;
+                const currentPlayer = playerTurn ? o_class : x_class;
+                let winPanel = document.querySelector(`[data-toplayer='${currentPanel}']`);
+                placeMark(tiles, currentPlayer)
+                matchHistory.push({id: tiles.dataset.id, mark: currentPlayer});
+                
+                if(checkWin(currentPlayer)){  
+                    winPanel.classList.remove('hide')
+                    winPanel.classList.add(currentPlayer)
+                    winPanel.replaceWith(winPanel.cloneNode(true))
+                    activePanel = false;
+                    matchHistory.push({id: winPanel.dataset.id, mark: currentPlayer});
+                    playerTurn ? o_score++ : x_score++;
+                    randomSounds()
+                    playerScore()
+                } else if (isDraw()){
+                    winPanel.classList.add('draw')
+                    activePanel = false;
+                }
+    
+                if(overAllWin(currentPlayer)){
+                    winningMessage(`Player ${currentPlayer.toUpperCase()} win!`)
+                } else if(overallDraw()){
+                    overAllWinbyScore()
+                }
+                swapPlayer()
+            }, {once: true});
+        })
 
-    function swapPlayer() {
-        let X_player = document.querySelector('#player1score');
-        let O_player = document.querySelector('#player2score');
-        playerTurn = !playerTurn;
-
-        X_player.textContent = x_score;
-        O_player.textContent = o_score;
+        function placeMark(tiles, currentPlayer){
+            tiles.classList.add(currentPlayer);
+        }
+    
+        function swapPlayer() {
+            playerTurn = !playerTurn;
+        }
     }
 
     function playerScore() {
-        playerTurn ? o_score++ : x_score++;
+        let X_player = document.querySelector('#player1score');
+        let O_player = document.querySelector('#player2score');
+        X_player.textContent = x_score;
+        O_player.textContent = o_score;
     }
 
     function checkWin(currentPlayer){
@@ -135,12 +149,36 @@ window.addEventListener('load', () => {
     }
     function overAllWinbyScore(){
         if (o_score === x_score) {
-            console.log('draw')
+            winningMessage('Draw')
         } else if (x_score > o_score) {
-            console.log(`x win with score of ${x_score}`)
+            winningMessage(`X win with score of ${x_score}`)
         } else {
-            console.log(`o win with score of ${o_score}`)
+            winningMessage(`O win with score of ${o_score}`)
         }
+    }
+
+    function rematch() {
+        let resetTiles = document.querySelectorAll('[data-id]');
+        
+        resetTiles.forEach(box => {
+            box.classList.remove(x_class)
+            box.classList.remove(o_class)
+            box.classList.remove('draw') 
+            if(box.classList.contains('toplayer')){
+                box.classList.remove('hide')
+            }
+            box.replaceWith(box.cloneNode(true))   
+        })
+
+        loadAllPanelClickEvent()
+        loadAllTilesClickEvent()
+        
+        matchHistory = [];
+        prevHistory = [];
+        x_score = 0;
+        o_score = 0;
+        messageBox.style.display = 'none';
+        playerScore()
     }
 
     function randomSounds(){
@@ -149,6 +187,12 @@ window.addEventListener('load', () => {
         playAudio.src = `./audio/meme/${randomMusic}.mp3`;
         playAudio.play()
         playAudio.volume = .1;
+    }
+
+    function winningMessage(message){
+        let msg = document.querySelector('#messagestatus');
+        messageBox.style.display = 'block';
+        msg.textContent = message;
     }
 
     prevButton.addEventListener('click', () => {
@@ -180,9 +224,9 @@ window.addEventListener('load', () => {
     startBGM = new Audio();
     startBGM.src = './audio/bgm/start.mp3';    
     startBGM.play()
-    startBGM.volume = .06;
+    startBGM.volume = .02;
 
     gameBGM = new Audio();
     gameBGM.src = './audio/bgm/game.mp3';
-    gameBGM.volume = .08;
+    gameBGM.volume = .03;
 })

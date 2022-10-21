@@ -190,3 +190,48 @@ main {
     box-shadow: var(--borderbox-shadow-color);
     background-color: white;
 }
+#winmessage {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+.messagebox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: calc(var(--playerbox-size)*1.8);
+    gap: 20px;
+    padding: 15px;
+    background-color: rgba(116, 84, 84, 0.9);
+}
+.messagebox p{
+    text-align: center;
+}
+#messagestatus{
+    font-size: 40px;
+}
+.matchHistoryBtn{
+    height: 40px;
+    width: 120px;
+    border: 0;
+    background-color: coral;
+    border-radius: 20px;
+    font-size: 20px;
+    box-shadow: 0px 0px 5px 5px rgb(199, 180, 180), 
+    0px 0px 0px 7px rgba(214, 8, 8, 0.9);;
+    text-shadow: -2px 1px rgba(255, 145, 145, 0.9);
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+.matchHistoryBtn:hover{
+    box-shadow: 0px 0px 8px 8px rgb(199, 180, 180), 
+    0px 0px 0px 10px rgba(245, 83, 83, 0.5);;
+    transform: scale(1.05);
+}
+#reviewmenu {
+    display: none;
+}
