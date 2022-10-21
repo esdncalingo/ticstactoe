@@ -193,7 +193,7 @@ window.addEventListener('load', () => {
     function randomSounds(){
         var randomMusic = playList[Math.floor(Math.random()*playList.length)];
         var playAudio = new Audio();
-        console.log(noRepeat)
+        
         if (noRepeat !== randomMusic){
             playAudio.src = `./audio/meme/${randomMusic}.mp3`;
             playAudio.play()
