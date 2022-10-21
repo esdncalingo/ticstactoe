@@ -6,9 +6,12 @@ window.addEventListener('load', () => {
     const nextButton = document.querySelector('#nxtbtn');
     const restartButton = document.querySelector('#restartbtn');
     const startButton = document.querySelector('#startbtn');
+    const reviewButton = document.querySelector('#reviewbtn');
     const rematchButton = document.querySelector('#rematchbtn');
+    const reviewRematchButton = document.querySelector('#rematch2btn');
     const quitButton = document.querySelector('#quitbtn');
     let messageBox = document.querySelector('#winmessage');
+    let reviewDisplay = document.querySelector('.endgamebtns');
     let matchHistory = [], prevHistory = [];
     const win_panel_pattern = [
         [1,2,3],
@@ -29,8 +32,6 @@ window.addEventListener('load', () => {
     
     restartButton.addEventListener('click', () => {
         location.reload();
-        const startmenu = document.querySelector('#startmenu');
-        startmenu.style.display = 'none'
     })
     startButton.addEventListener('click', () => {
         const startmenu = document.querySelector('#startmenu');
@@ -38,10 +39,18 @@ window.addEventListener('load', () => {
         startBGM.pause()
         gameBGM.play()
     })
+    reviewButton.addEventListener('click', () => {
+        reviewDisplay.style.display = 'flex';
+        messageBox.style.display = 'none';
+    })
     quitButton.addEventListener('click', () => {
         location.reload();
     })
     rematchButton.addEventListener('click', rematch)
+    reviewRematchButton.addEventListener('click', () => {
+        reviewDisplay.style.display = 'none';
+        rematch()
+    })
 
     function loadAllPanelClickEvent(){
         const toplayerElement = document.querySelectorAll('[data-toplayer]');
@@ -172,7 +181,7 @@ window.addEventListener('load', () => {
 
         loadAllPanelClickEvent()
         loadAllTilesClickEvent()
-        
+
         matchHistory = [];
         prevHistory = [];
         x_score = 0;
@@ -224,9 +233,11 @@ window.addEventListener('load', () => {
     startBGM = new Audio();
     startBGM.src = './audio/bgm/start.mp3';    
     startBGM.play()
+    startBGM.loop = true;
     startBGM.volume = .02;
 
     gameBGM = new Audio();
     gameBGM.src = './audio/bgm/game.mp3';
+    gameBGM.loop = true;
     gameBGM.volume = .03;
 })
