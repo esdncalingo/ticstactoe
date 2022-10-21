@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
         [7,5,3]
     ];
     const playList = ['Nice', 'Oh Hell No!', 'Ok', 'That Was Legitness', 'Toasty!', 'Why You Bully Me', 'Wow!'];
-    const speechList = ['Eat Dust!', 'I can win this time', 'I got this', 'The World is mine', 'You gonna lose!', 'I got my eyes on you', 'Mine! Mine! Mine!', 'for Ainz Ooal Gown!!', 'I will destroy you my Sister', 'You cant defeet me'];
+    const speechList = ['Eat Dust!', 'I can win this time', 'I got this', 'The World is mine', 'You gonna lose!', 'I got my eyes on you', 'Mine! Mine! Mine!', 'for Ainz Ooal Gown!!', 'I will destroy you my Sister', 'You cant defeat me', 'Disgusting Insect', 'I can play with you all day long', 'So easy'];
     let playerTurn, currentPanel, activePanel=false;
     let startBGM, gameBGM, noRepeat, noRepeatSpeech;
 
