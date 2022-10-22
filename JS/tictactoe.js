@@ -268,10 +268,10 @@ window.addEventListener('load', () => {
     startBGM.src = './audio/bgm/start.mp3';    
     startBGM.play()
     startBGM.loop = true;
-    startBGM.volume = .04;
+    startBGM.volume = .1;
 
     gameBGM = new Audio();
     gameBGM.src = './audio/bgm/game.mp3';
     gameBGM.loop = true;
-    gameBGM.volume = .05;
+    gameBGM.volume = .1;
 })
