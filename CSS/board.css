@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 :root{
-    --tile-size: 100px;
+    --tile-size: 60px;
     --mark-size: calc(var(--tile-size)* .9);
     --panel-size: calc(var(--tile-size)*3);
     --playerbox-size: calc(var(--tile-size)*1.5);
@@ -51,8 +51,8 @@ main {
     content: '';
     position: absolute;
     background-color: rgb(196, 181, 179);
-    width: calc(var(--playerbox-size)*3.1);
-    height:  calc(var(--tile-size)*1.2);
+    width: calc(var(--playerbox-size)*5);
+    height:  calc(var(--tile-size)*2.1);
     border-radius: 50px;
     z-index: -1;
 }
@@ -60,8 +60,8 @@ main {
     content: '';
     position: absolute;
     background-color: rgb(110, 28, 17);
-    width: calc(var(--playerbox-size)*3);
-    height:  calc(var(--tile-size)*1.1);
+    width: calc(var(--playerbox-size)*4.8);
+    height:  calc(var(--tile-size)*1.8);
     border-radius: 50px;
     z-index: -1;
 }
@@ -214,8 +214,11 @@ main {
     box-shadow: var(--borderbox-shadow-color);
     background-color: white;
 }
+.playername {
+    font-size: 10px;
+}
 .playerscore{
-    font-size: 80px;
+    font-size: 30px;
 }
 .playerbox{
     display: flex;
@@ -232,6 +235,7 @@ main {
 #narberal{
     background-image: url(../gifs/narberal.gif);
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
@@ -239,34 +243,35 @@ main {
 #lupusregina{
     background-image: url(../gifs/lupusregina.gif);
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
 }
-#player1speech{
+#player1speech, #player2speech{
     display: flex;
     position: relative;
     visibility: hidden;
     align-items: center;
     justify-content: center;
     height: 50%;
-    width: 80%;
-    border: 8px solid #666;
+    width: 120%;
+    border: 5px solid #666;
     background-color: lightyellow;
 }
 #player1speech p, #player2speech p{
     text-align: center;
 }
-#player1speech:before {
+#player1speech:before{
 	content: ' ';
 	position: absolute;
 	width: 0;
 	height: 0;
-	left: 30px;
+	left: 60px;
     right: auto;
     top: auto;
-	bottom: -40px;
-	border: 20px solid;
+	bottom: -20px;
+	border: 10px solid;
 	border-color: #666 transparent transparent #666;
 }
 #player1speech:after{
@@ -274,34 +279,23 @@ main {
 	position: absolute;
 	width: 0;
 	height: 0;
-	left: 38px;
+	left: 64px;
     right: auto;
     top: auto;
-	bottom: -20px;
-	border: 12px solid;
+	bottom: -10px;
+	border: 6px solid;
 	border-color: lightyellow transparent transparent lightyellow;
-}
-#player2speech{
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    height: 50%;
-    width: 80%;
-    border: 8px solid #666;
-    background-color: lightyellow;
 }
 #player2speech:before {
 	content: ' ';
 	position: absolute;
 	width: 0;
 	height: 0;
-	left: 30px;
+	left: 20px;
     right: auto;
     top: auto;
-	bottom: -40px;
-	border: 20px solid;
+	bottom: -20px;
+	border: 10px solid;
 	border-color: #666 #666 transparent transparent ;
 }
 #player2speech:after{
@@ -309,11 +303,11 @@ main {
 	position: absolute;
 	width: 0;
 	height: 0;
-	left: 38px;
+	left: 24px;
     right: auto;
     top: auto;
-	bottom: -20px;
-	border: 12px solid;
+	bottom: -10px;
+	border: 6px solid;
 	border-color: lightyellow lightyellow transparent transparent ;
 }
 .winmessage {
@@ -331,7 +325,7 @@ main {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    width: calc(var(--playerbox-size)*1.8);
+    width: calc(var(--playerbox-size)*3.5);
     gap: 20px;
     padding: 15px;
     background-color: rgba(116, 84, 84, 0.9);
@@ -340,7 +334,7 @@ main {
     text-align: center;
 }
 #messagestatus{
-    font-size: 40px;
+    font-size: 30px;
 }
 .matchHistoryBtn{
     height: 40px;
